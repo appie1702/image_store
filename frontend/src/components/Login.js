@@ -43,8 +43,6 @@ const Login = () => {
             history.push("/imgs");
             history.go(0);
             
-
-
         } catch(error) {
             toast().danger('', 'Invalid email id or password!').for(2000).show()
             setloading(false);
