@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
-import {toast} from 'tailwind-toast'
+//import {toast} from 'tailwind-toast'
 import axios from 'axios';
+import { useToast } from './Toast/ToastService';
 
 const Login = () => {
 
@@ -10,13 +11,13 @@ const Login = () => {
     const [show,setshow] = useState(false);
     const [loading,setloading] = useState(false);
     const history = useHistory();
-
+    const toast = useToast();
 
     const submitHandler = async (e) => {
         e.preventDefault();
         setloading(true);
         if (!email || !password) {
-            toast().danger('Warning', 'there are empty fields!').for(2000).show()
+            toast.open("Error", "There are empty fields")
         setloading(false);
         return;
         }
@@ -39,12 +40,11 @@ const Login = () => {
             console.log(userdata)
 
             setloading(false);
-            toast().success('', 'Successfully logged in!').for(2000).show()
             history.push("/imgs");
-            history.go(0);
-            
+            history.go(0);  
+                      
         } catch(error) {
-            toast().danger('', 'Invalid email id or password!').for(2000).show()
+            toast.open("Error", "Invalid email or password")
             setloading(false);
         }
     };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import axios from 'axios'
-const { toast } = require('tailwind-toast')
+import { useToast } from './Toast/ToastService';
 
 
 const Registration = () => {
@@ -13,7 +13,7 @@ const Registration = () => {
     const [show,setshow] = useState(false);
     const [loading,setloading] = useState(false);
     const history = useHistory();
-
+    const toast = useToast();
     const handleClick = () => setshow(!show);
 
 
@@ -25,7 +25,7 @@ const Registration = () => {
         if (!name || !email || !password || !confirmpassword) {
             console.log("1st if")
             setloading(false);
-            toast().danger('Hey!', 'there are empty fields!').for(2000).show()
+            toast.open("Error", "There are empty fields")
             return;
         }
 
@@ -34,13 +34,13 @@ const Registration = () => {
         if (password !== confirmpassword) {
             console.log("2st if")
             setloading(false);
-            toast().danger('Hey!', 'Passwords are not matching!').for(2000).show()
+            toast.open("Error", "Passwords are not matching")
             return;
         }
 
         if(password.length < 6){
             setloading(false)
-            toast().danger('Hey!', 'password is too short!').for(2000).show()
+            toast.open("Error", "Password length should be more than 6 characters")
             return
         }
 
@@ -68,12 +68,12 @@ const Registration = () => {
             setname("")
             setpassword("")
             setconfirmpassword("")
-            toast().success('Registered!', 'Now Please login').for(2000).show();
-            history.push("/imgs")
+            toast.open("Success", "You have been registered, Now please login to continue")
+            history.push("/")
 
         } catch(error) {
             console.log("catch")
-            toast().danger('Oops!', "Some error occurred or this email id already exists!").for(2000).show()
+            toast.open("Error", "Something went wrong, Please try again later")
             setloading(false);
         }
     }
