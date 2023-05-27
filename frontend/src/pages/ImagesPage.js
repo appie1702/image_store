@@ -22,7 +22,7 @@ const ImagesPage = () => {
     setTimeout(() => {
       setusernotloggedin(!usernotloggedin);
     }, 4000);
-  },[userContext])
+  },[userContext, usernotloggedin])
 
 
   const handleLogout = async(e)=>{
@@ -30,7 +30,7 @@ const ImagesPage = () => {
     setloading(true)
     try{
       const logout = await fetch("/api/user/logout");
-
+      
       if(!logout.ok){
         setloading(false)
         toast.open("Error", "Something went wrong while logging out, try again later")

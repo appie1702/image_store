@@ -53,9 +53,9 @@ const Search = () => {
 
   return (
     <div className="flex mx-auto space-x-4 items-center justify-center w-96">
-        <input type="text" onChange={(e)=>setsearch(e.target.value)} value={search} placeholder="Title" className=" focus:border-red-600 flex-1 px-6 py-1.5 placeholder-slate-300 text-slate-600 bg-white text-base border shadow outline-none focus:outline-none w-full rounded-full"/>
+        <input type="text" onChange={(e)=>setsearch(e.target.value)} value={search} placeholder="Title" className=" focus:border-red-600 flex-1 px-6 py-1.5 placeholder-slate-300 text-slate-600 bg-white text-base border shadow-lg outline-none focus:outline-none w-full rounded-full"/>
         <div className=" flex flex-row space-x-2 h-full font-normal text-center text-slate-300 bg-transparent rounded text-lg items-center justify-center pr-2 py-2">
-            <button onClick={searchHandler} className='border border=[1px] hover:border-red-600 px-2 py-2 font-semibold rounded-full text-slate-900'><BsSearch size={20}/></button>
+            <button onClick={searchHandler} className=' shadow-lg border border=[1px] hover:border-red-600 px-2 py-2 font-semibold rounded-full text-slate-900'><BsSearch size={20}/></button>
             <FaSpinner className={`loading-icon ${loading ? "visible" : "invisible"}`}/>
         </div>
     </div>

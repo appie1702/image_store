@@ -176,16 +176,25 @@ const Modal = ({isOpen, onClose}) => {
                             </div>
 
                             <div className="flex flex-col items-start mb-6 w-full">
-                                <div>
-                                    <label className="text-gray-500 font-bold md:text-right mb-3 md:mb-4" htmlFor="title">
-                                        Upload Image
-                                    </label>
-                                </div>
+                                <label className="text-gray-500 font-bold md:text-right mb-1 md:mb-2 lg:mb-3 xl:mb-3" htmlFor="title">
+                                    Upload Image
+                                </label>
                                 <div className='flex flex-row relative w-full'>
                                     <input onChange={(e)=>postpic(e.target.files[0])} className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-600" id="pic" name="pic" type="file" accept="image/*" disabled={disabled} />
                                     <FaSpinner className={`absolute right-3 top-2 loading-icon ${loading ? "visible" : "invisible"}`}/>
                                 </div>
                             </div>
+
+                            {url ? (
+                                <div className=' bg-gray-300 w-full rounded relative'>
+                                    <img src={url} alt='uploaded_image' className=' object-fill rounded w-full h-64'/>
+                                </div>
+                            ) : (
+                                <div className=' bg-gray-300 w-full h-64 rounded relative'>
+                                    <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>No image uploaded yet</div>
+                                </div>
+                            )}
+                            
 
                             <div className="flex items-center justify-end">
                                 <FaSpinner className={`loading-icon-submit mr-2 ${submitload ? "visible" : "invisible"}`}/>
@@ -193,6 +202,8 @@ const Modal = ({isOpen, onClose}) => {
                                     Upload
                                 </button>
                             </div>
+
+                            
                         </div>
 
 
